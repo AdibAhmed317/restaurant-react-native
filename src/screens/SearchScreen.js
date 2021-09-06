@@ -10,7 +10,7 @@ const SearchScreen = () => {
 
   const searchAPI = async () => {
     // const response = await yelp.get(`/search?=${term}& location=Chicago`)
-    const response = await yelp.get('/people/1', {
+    const response = await yelp.get('/search', {
       params: {
         limit: 50,
         term: term,
