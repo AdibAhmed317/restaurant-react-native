@@ -6,7 +6,11 @@ export default () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    searchAPI('burger');
+    const base = ['pasta', 'burger', 'pizza', 'fish'];
+    const randomTerm = Math.floor(Math.random() * base.length);
+    const baseSearch = base[randomTerm];
+
+    searchAPI(baseSearch);
   }, []);
 
   const searchAPI = async searchTerm => {
