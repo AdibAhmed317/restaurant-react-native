@@ -5,11 +5,13 @@ import ResultsDetails from './ResultsDetails';
 import { useNavigation } from '@react-navigation/native';
 
 const ResultsList = ({ title, results }) => {
+  if (!results.length) {
+    return null;
+  }
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      {/* <Text>We've found {results.length} restaurants</Text> */}
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -17,7 +19,9 @@ const ResultsList = ({ title, results }) => {
         keyExtractor={result => result.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate('Details')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Details', { id: item.id })}
+            >
               <ResultsDetails result={item} />
             </TouchableOpacity>
           );
